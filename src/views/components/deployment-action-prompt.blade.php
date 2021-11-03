@@ -22,6 +22,22 @@
                     <input type="text" class="form-control" name="key" hidden value="{{ $key }}" required>
                     <input type="text" class="form-control" name="command" hidden value="{{ $command }}" required>
 
+                    @if (is_production() == true)
+                        <div class="text-center mt-4">
+                            <p class="text-danger"><b>This site is currently in production. Are you sure you want to run this command?</b></p>
+                            <div class="form-check">
+                                <input type="checkbox" id="force_command" name="force_command" required>
+                                <label for="force_command">I agree to run this command on production</label>
+                            </div>
+                        </div>
+
+                        @if (has_production_password() == true)
+                            <div class="form-group">
+                                <label for="production_password">Enter the secure production password:</label>
+                                <input type="password" name="production_password" id="production_password" class="form-control" required>
+                            </div>
+                        @endif
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

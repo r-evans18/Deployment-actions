@@ -8,6 +8,7 @@ return [
      */
 
     'notification_email' => env('DEPLOYMENT_ACTION_EMAIL', null),
+    'production_password' => env('DEPLOYMENT_PRODUCTION_PASSWORD', null),
 
     'activeActions' => [
         'migrate',

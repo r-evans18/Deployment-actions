@@ -42,3 +42,10 @@ if (!function_exists('is_production')) {
         return config('app.env') == 'production';
     }
 }
+
+if (!function_exists('has_production_password')) {
+    function has_production_password(): bool
+    {
+        return config('deployment.production_password') != null;
+    }
+}

@@ -14,6 +14,12 @@ class AccessController extends Controller
     public function __invoke(Request $request): RedirectResponse
     {
         if (Hash::check($request->password, Auth::user()->password)) {
+            if (has_production_password()) {
+                if ($request->production_password != config('deployment.production_password')) {
+                    DeploymentActionLog::logDeploymentAction('deployment-access-request', false, 'Production password does not match');
+                    return redirect()->back()->with('error', 'Production password does not match! Action aborted.');
+                }
+            }
             if (!deployment_action_enabled($request->key)) {
                 DeploymentActionLog::logDeploymentAction('deployment-access-request', false, 'Action is not enabled');
                 return redirect()->back()->with('error', 'Action is not enabled! Action aborted.');

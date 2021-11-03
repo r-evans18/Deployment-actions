@@ -81,6 +81,7 @@
                                 <th>Performed By</th>
                                 <th>Executed At</th>
                                 <th>Successful</th>
+                                <th>Reason</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,6 +98,7 @@
                                             <span class="badge badge-danger">No</span>
                                         @endif
                                     </td>
+                                    <td>{{ $log->error }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
