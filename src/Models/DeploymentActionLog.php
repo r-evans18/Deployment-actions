@@ -36,7 +36,11 @@ class DeploymentActionLog extends Model
             'forced' => $forced,
         ]);
 
-        Mail::to(config('deployment.notification_email'))->send(new DeploymentAction($log));
+        if(config('deployment.enable_notifications') == true) {
+            foreach (config('deployment.notification_emails') as $email) {
+                Mail::to($email['email'])->send(new DeploymentAction($log));
+            }
+        }
 
         if ($action != 'deployment-access-request') {
             self::removeDeploymentActionToken();

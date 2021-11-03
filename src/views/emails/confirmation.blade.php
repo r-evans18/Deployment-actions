@@ -1,8 +1,6 @@
 @component('mail::message')
 # Deployment Action Executed!
 
-Hi Callum,
-
 Please review the following details from the deployment action which was executed at: **{{ $log->created_at }}**.
 
 **User:** {{ $log->user->name }}<br>
