@@ -35,3 +35,10 @@ if (!function_exists('remove_deployment_action_token')) {
         session()->forget('deployment_action_granted');
     }
 }
+
+if (!function_exists('is_production')) {
+    function is_production(): bool
+    {
+        return config('app.env') == 'production';
+    }
+}

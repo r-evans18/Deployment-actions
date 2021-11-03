@@ -18,6 +18,7 @@ class DeploymentActionLog extends Model
         'action',
         'successful',
         'error',
+        'forced',
     ];
 
     public function user(): BelongsTo
@@ -25,13 +26,14 @@ class DeploymentActionLog extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function logDeploymentAction(string $action, bool $successful, $error = null)
+    public static function logDeploymentAction(string $action, bool $successful, $error = null, $forced = false)
     {
         $log = DeploymentActionLog::create([
             'user_id' => Auth::user()->id,
             'action' => $action,
             'successful' => $successful,
             'error' => $error,
+            'forced' => $forced,
         ]);
 
         Mail::to(config('deployment.notification_email'))->send(new DeploymentAction($log));

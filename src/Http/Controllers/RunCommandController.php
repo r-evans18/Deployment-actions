@@ -15,12 +15,12 @@ class RunCommandController extends Controller
         $successful = true;
         $exception = null;
         try {
-            Artisan::call($command);
+            Artisan::call($command, ['--force' => is_production()]);
         } catch (\Exception $exception) {
             Log::error('Unable to run command: ' . $command . ' due to: ' . $exception);
         }
 
-        DeploymentActionLog::logDeploymentAction($command, $successful, $exception);
+        DeploymentActionLog::logDeploymentAction($command, $successful, $exception, is_production());
 
         if (!$successful) {
             return redirect()->back()

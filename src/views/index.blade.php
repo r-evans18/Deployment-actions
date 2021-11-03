@@ -87,7 +87,7 @@
                             @foreach($logs as $log)
                                 <tr>
                                     <td>{{ $log->id }}</td>
-                                    <td>{{ $log->action }}</td>
+                                    <td>{{ $log->action }} @if($log->forced) (<span class="text-danger"><b>FORCED</b></span>) @endif</td>
                                     <td>{{ $log->user->name }}</td>
                                     <td>{{ $log->created_at }}</td>
                                     <td>
