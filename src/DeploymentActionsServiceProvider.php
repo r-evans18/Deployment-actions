@@ -11,13 +11,13 @@ class DeploymentActionsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        require_once __DIR__.'/../src/Helpers/helper.php';
+        require_once __DIR__.'/../Helpers/helper.php';
 
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('deploymentActionRun', DeploymentActionRun::class);
 
-        $this->loadViewsFrom(__DIR__ . '/../src/views', 'deployment-actions');
-        $this->loadRoutesFrom(__DIR__.'/../src/routes/web.php');
+        $this->loadViewsFrom(__DIR__ . '/../views', 'deployment-actions');
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadViewComponentsAs('deployment-action', [
             Prompt::class,
         ]);
