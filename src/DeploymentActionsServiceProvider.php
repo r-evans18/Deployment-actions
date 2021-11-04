@@ -16,23 +16,18 @@ class DeploymentActionsServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('deploymentActionRun', DeploymentActionRun::class);
 
-        $this->loadViewsFrom(__DIR__ . '/views', 'deployment-actions');
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadViewsFrom(__DIR__ . '/../src/views', 'deployment-actions');
+        $this->loadRoutesFrom(__DIR__.'/../src/routes/web.php');
         $this->loadViewComponentsAs('deployment-action', [
             Prompt::class,
         ]);
 
         $this->publishes([
-            __DIR__.'/config/deployment.php' => config_path('deployment.php')
+            __DIR__.'/../config/deployment.php' => config_path('deployment.php')
         ], 'deployment-actions-config');
 
         $this->publishes([
-            __DIR__.'/database/migrations/' => database_path('migrations')
+            __DIR__.'/../database/migrations' => database_path('migrations')
         ], 'deployment-actions-migrations');
-    }
-
-    public function register()
-    {
-
     }
 }
