@@ -1,11 +1,10 @@
 {
-    "name": "rc/deployment-actions-laravel",
+    "name": "revans/deployment-actions-laravel",
     "description": "Allows artisan commands to be run on sites where termnial access or database access cannot be accessed",
     "license": "MIT",
     "authors": [
         {
             "name": "Rhys Evans",
-            "email": "rhys.evans@redditchconnected.co.uk"
         }
     ],
     "require": {},
