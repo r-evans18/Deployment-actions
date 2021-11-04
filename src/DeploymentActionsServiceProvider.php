@@ -11,7 +11,7 @@ class DeploymentActionsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        require_once __DIR__.'/Helpers/helper.php';
+        require_once __DIR__.'/../src/Helpers/helper.php';
 
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('deploymentActionRun', DeploymentActionRun::class);
