@@ -34,7 +34,7 @@
                         @if (has_production_password() == true)
                             <div class="form-group">
                                 <label for="production_password">Enter the secure production password:</label>
-                                <input type="password" name="production_password" id="production_password" class="form-control" required>
+                                <input type="password" name="production_password" id="production_password" class="form-control" placeholder="Production secure password..." required>
                             </div>
                         @endif
                     @endif
