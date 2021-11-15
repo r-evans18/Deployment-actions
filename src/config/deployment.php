@@ -3,6 +3,11 @@
 return [
 
     /*
+     * Setup your layouts file for the pages to extend.
+     */
+    'layout_file' => 'layouts.app',
+
+    /*
      * Turn on notifications to be sent when an action is run.
      */
     'enable_notifications' => true,

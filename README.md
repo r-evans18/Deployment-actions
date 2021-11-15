@@ -1,7 +1,7 @@
 # Laravel Deployment Actions
 
 <p align="center">
-    <a href="https://github.com/r-evans18/Deployment-actions"><img src="https://img.shields.io/badge/Release version-1.0.0-green.svg"></a>
+    <a href="https://github.com/r-evans18/Deployment-actions"><img src="https://img.shields.io/badge/Release version-1.0.5-green.svg"></a>
 </p>
 
 ### Setup

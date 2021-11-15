@@ -1,4 +1,4 @@
-@extends('deployment-actions::layouts.app')
+@extends(config('deployment.layout_file'))
 
 @section('content')
     <div class="row mt-3">
@@ -73,36 +73,38 @@
                     <h4>Deployment History</h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Action</th>
-                                <th>Performed By</th>
-                                <th>Executed At</th>
-                                <th>Successful</th>
-                                <th>Reason</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($logs as $log)
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
-                                    <td>{{ $log->id }}</td>
-                                    <td>{{ $log->action }} @if($log->forced) (<span class="text-danger"><b>FORCED</b></span>) @endif</td>
-                                    <td>{{ $log->user->name }}</td>
-                                    <td>{{ $log->created_at }}</td>
-                                    <td>
-                                        @if($log->successful)
-                                            <span class="badge badge-success">Yes</span>
-                                        @else
-                                            <span class="badge badge-danger">No</span>
-                                        @endif
-                                    </td>
-                                    <td>{{ $log->error }}</td>
+                                    <th>#</th>
+                                    <th>Action</th>
+                                    <th>Performed By</th>
+                                    <th>Executed At</th>
+                                    <th>Successful</th>
+                                    <th>Reason</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach($logs as $log)
+                                    <tr>
+                                        <td>{{ $log->id }}</td>
+                                        <td>{{ $log->action }} @if($log->forced) (<span class="text-danger"><b>FORCED</b></span>) @endif</td>
+                                        <td>{{ $log->user->name }}</td>
+                                        <td>{{ $log->created_at }}</td>
+                                        <td>
+                                            @if($log->successful)
+                                                <span class="badge badge-success">Yes</span>
+                                            @else
+                                                <span class="badge badge-danger">No</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $log->error }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     {{ $logs->links() }}
                 </div>
             </div>
