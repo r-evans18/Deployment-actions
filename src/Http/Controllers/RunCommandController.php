@@ -17,6 +17,7 @@ class RunCommandController extends Controller
         try {
             Artisan::call($command, ['--force' => is_production()]);
         } catch (\Exception $exception) {
+            $successful = false;
             Log::error('Unable to run command: ' . $command . ' due to: ' . $exception);
         }
 
