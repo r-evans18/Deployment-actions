@@ -20,7 +20,7 @@ class Prompt extends Component
      * @param string $description
      * @param string $command
      */
-    public function __construct(string $key, string $title, string $description, string $command, bool $seeder)
+    public function __construct(string $key, string $title, string $description, string $command, bool $seeder = false)
     {
         $this->key = $key;
         $this->title = $title;
