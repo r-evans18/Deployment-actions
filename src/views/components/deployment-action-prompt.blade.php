@@ -21,6 +21,7 @@
                     <input type="password" name="password" class="form-control" placeholder="Password..." required>
                     <input type="text" class="form-control" name="key" hidden value="{{ $key }}" required>
                     <input type="text" class="form-control" name="command" hidden value="{{ $command }}" required>
+                    <input type="text" class="form-control" name="seeder" hidden value="{{ $seeder }}">
 
                     @if (is_production() == true)
                         <div class="text-center mt-4">

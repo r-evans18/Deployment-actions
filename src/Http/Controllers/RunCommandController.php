@@ -10,18 +10,30 @@ use RC\DeploymentActions\Models\DeploymentActionLog;
 
 class RunCommandController extends Controller
 {
-    public function __invoke($command): RedirectResponse
+    public function __invoke($command, $seeder = false): RedirectResponse
     {
         $successful = true;
         $exception = null;
-        try {
-            Artisan::call($command, ['--force' => is_production()]);
-        } catch (\Exception $exception) {
-            $successful = false;
-            Log::error('Unable to run command: ' . $command . ' due to: ' . $exception);
+        if ($seeder) {
+            try {
+                Artisan::call('db:seed', [
+                    '--class' => $command,
+                    '--force' => is_production()
+                ]);
+            } catch (\Exception $exception) {
+                $successful = false;
+                Log::error('Unable to run command: ' . 'Seeder:' . $seeder . '-' . $command . ' due to: ' . $exception);
+            }
+        } else {
+            try {
+                Artisan::call($command, ['--force' => is_production()]);
+            } catch (\Exception $exception) {
+                $successful = false;
+                Log::error('Unable to run command: ' . $command . ' due to: ' . $exception);
+            }
         }
 
-        DeploymentActionLog::logDeploymentAction($command, $successful, $exception, is_production());
+        DeploymentActionLog::logDeploymentAction('Seeder:' . $seeder . '-' . $command, $successful, $exception, is_production());
 
         if (!$successful) {
             return redirect()->back()
