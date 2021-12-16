@@ -10,6 +10,7 @@ class Prompt extends Component
     public $title;
     public $description;
     public $command;
+    public $seeder;
 
     /**
      * Create a new component instance.
@@ -19,12 +20,13 @@ class Prompt extends Component
      * @param string $description
      * @param string $command
      */
-    public function __construct(string $key, string $title, string $description, string $command)
+    public function __construct(string $key, string $title, string $description, string $command, bool $seeder = false)
     {
         $this->key = $key;
         $this->title = $title;
         $this->description = $description;
         $this->command = $command;
+        $this->seeder = $seeder;
     }
 
     /**

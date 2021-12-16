@@ -14,6 +14,6 @@ Route::group([
         'prefix' => 'deployment-actions',
         'as' => 'deployment-actions.',
     ], function () {
-        Route::get('/run-command/{command}', 'RunCommandController')->name('run-command');
+        Route::get('/run-command/{command}/{seeder?}', 'RunCommandController')->name('run-command');
     });
 });

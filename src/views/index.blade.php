@@ -59,6 +59,7 @@
                                 :title="$command['title']"
                                 :description="$command['title']"
                                 :command="$command['command']"
+                                :seeder="$command['seeder']"
                             ></x-deployment-action-prompt>
                         @endif
                     @endforeach

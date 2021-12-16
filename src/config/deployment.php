@@ -45,4 +45,15 @@ return [
     'commands' => [
 
     ]
+
+/** Example seeder */
+
+    /**
+    [
+            'key' => 'seed-users',
+            'title' => 'Seed users',
+            'command' => 'UserSeeder',
+            'seeder' => true,
+    ],
+ **/
 ];
