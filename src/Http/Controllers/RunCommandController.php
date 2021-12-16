@@ -10,11 +10,11 @@ use RC\DeploymentActions\Models\DeploymentActionLog;
 
 class RunCommandController extends Controller
 {
-    public function __invoke($command, $seeder = false): RedirectResponse
+    public function __invoke($command, $seeder = null): RedirectResponse
     {
         $successful = true;
         $exception = null;
-        if ($seeder) {
+        if ($seeder == "1") {
             try {
                 Artisan::call('db:seed', [
                     '--class' => $command,
@@ -22,7 +22,7 @@ class RunCommandController extends Controller
                 ]);
             } catch (\Exception $exception) {
                 $successful = false;
-                Log::error('Unable to run command: ' . 'Seeder:' . $seeder . '-' . $command . ' due to: ' . $exception);
+                Log::error('Unable to run command: ' . 'Seeder: True ' . '-' . $command . ' due to: ' . $exception);
             }
         } else {
             try {
@@ -33,7 +33,7 @@ class RunCommandController extends Controller
             }
         }
 
-        DeploymentActionLog::logDeploymentAction('Seeder:' . $seeder . '-' . $command, $successful, $exception, is_production());
+        DeploymentActionLog::logDeploymentAction('Seeder:' . $seeder == "1" ? true : false . ' - ' . $command, $successful, $exception, is_production());
 
         if (!$successful) {
             return redirect()->back()

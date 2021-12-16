@@ -27,7 +27,10 @@ class AccessController extends Controller
 
             session(['deployment_action_granted' => true]);
             DeploymentActionLog::logDeploymentAction('deployment-access-request', true);
-            return redirect()->route('deployment-actions.run-command', $request->command, $request->seeder);
+            return redirect()->route('deployment-actions.run-command', [
+                'command' => $request->command,
+                'seeder' => $request->seeder,
+            ]);
         }
 
         DeploymentActionLog::logDeploymentAction('deployment-access-request', false, 'Password is incorrect');
