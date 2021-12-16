@@ -33,7 +33,7 @@ class RunCommandController extends Controller
             }
         }
 
-        DeploymentActionLog::logDeploymentAction('Seeder:' . $seeder == "1" ? true : false . ' - ' . $command, $successful, $exception, is_production());
+        DeploymentActionLog::logDeploymentAction($command, $successful, $exception, is_production());
 
         if (!$successful) {
             return redirect()->back()
